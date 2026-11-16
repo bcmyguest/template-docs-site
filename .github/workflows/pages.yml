@@ -24,6 +24,8 @@ concurrency:
 
 jobs:
   build:
+    # The template itself has no site to publish.
+    if: ${{ !github.event.repository.is_template }}
     runs-on: ubuntu-latest
     defaults:
       run:
