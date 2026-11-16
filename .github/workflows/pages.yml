@@ -45,7 +45,8 @@ jobs:
           cache-dependency-path: site/pnpm-lock.yaml
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
         with:
-          # Creates/enables Pages (Source: GitHub Actions) when missing; needs repo admin on the token.
+          # GITHUB_TOKEN cannot create the Pages site; enable it once with
+          # `gh api -X POST repos/OWNER/REPO/pages -f build_type=workflow`.
           enablement: true
       - run: pnpm install --frozen-lockfile
       - run: pnpm test

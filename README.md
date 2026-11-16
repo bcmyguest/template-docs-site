@@ -21,8 +21,15 @@ the owner from the `origin` remote, removes this section and deletes itself.
 To add the site to an existing repo, copy `site/`, `docs/` and
 `.github/workflows/pages.yml` into it.
 
-GitHub Pages on a private repo needs a paid plan. `pages.yml` enables Pages
-(Source: GitHub Actions) on its first run.
+Deploying needs a public repo (your plan has no Pages for private repos).
+The workflow token cannot turn Pages on, so do it once with yours:
+
+```bash
+gh api -X POST repos/OWNER/REPO/pages -f build_type=workflow
+```
+
+Until then `pages.yml` fails at its Pages setup step; `ci.yml` still builds
+every pull request.
 <!-- template:end -->
 
 ## Layout
